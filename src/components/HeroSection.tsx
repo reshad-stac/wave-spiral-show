@@ -1,11 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const HeroSection = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const progress = Math.min(scrolled / 800, 1); // Zoom out over 800px of scroll
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const textScale = 1 - scrollProgress * 0.5;
+  const opacity = 1 - scrollProgress;
+  const bgDarkness = scrollProgress;
 
   return (
-    <div className="fixed inset-0 bg-background overflow-hidden">
+    <div 
+      className="fixed inset-0 overflow-hidden transition-colors duration-500"
+      style={{
+        backgroundColor: `hsl(0 0% ${100 - bgDarkness * 100}%)`,
+      }}
+    >
       {/* Navigation */}
       <nav className="fixed top-0 right-0 z-50 p-8">
         <button
@@ -36,8 +57,19 @@ const HeroSection = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
-        <div className="text-center">
-          <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-extrabold leading-none tracking-tighter">
+        <div 
+          className="text-center transition-all duration-300"
+          style={{
+            transform: `scale(${textScale})`,
+            opacity: opacity,
+          }}
+        >
+          <h1 
+            className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-extrabold leading-none tracking-tighter"
+            style={{
+              color: `hsl(0 0% ${bgDarkness * 100}%)`,
+            }}
+          >
             {"RESHAD".split("").map((letter, index) => (
               <span
                 key={index}
