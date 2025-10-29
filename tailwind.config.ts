@@ -163,6 +163,29 @@ export default {
             transform: "scale(1) translateZ(0)",
           },
         },
+        "word-pop": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.5) rotate(-10deg)",
+          },
+          "60%": {
+            transform: "scale(1.1) rotate(5deg)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1) rotate(0deg)",
+          },
+        },
+        "word-swap": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.8)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -174,7 +197,9 @@ export default {
         "spiral-spin": "spiral-spin 2s ease-out forwards",
         "spiral-continuous": "spiral-continuous 20s linear infinite",
         "hero-reveal": "hero-reveal 1s ease-out forwards",
-        "letter-pop": "letter-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "letter-pop": "letter-pop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "word-pop": "word-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
+        "word-swap": "word-swap 0.8s ease-out forwards",
       },
     },
   },

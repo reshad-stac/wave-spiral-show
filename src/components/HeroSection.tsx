@@ -42,7 +42,7 @@ const HeroSection = () => {
               <span
                 key={index}
                 className="inline-block animate-letter-pop"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
                 {letter}
               </span>

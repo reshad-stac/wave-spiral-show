@@ -1,30 +1,20 @@
 import { useState, useEffect } from "react";
 import WaveAnimation from "@/components/WaveAnimation";
 import LoadingText from "@/components/LoadingText";
-import SpiralAnimation from "@/components/SpiralAnimation";
+import WordSwapAnimation from "@/components/WordSwapAnimation";
 import HeroSection from "@/components/HeroSection";
 
-type AnimationStage = "wave" | "loading" | "transition" | "spiral" | "hero";
+type AnimationStage = "wave" | "loading" | "transition" | "wordSwap" | "hero";
 
 const Index = () => {
   const [stage, setStage] = useState<AnimationStage>("wave");
-  const [showSpiral, setShowSpiral] = useState(false);
 
   useEffect(() => {
     // Handle transition stage
     if (stage === "transition") {
       const timer = setTimeout(() => {
-        setStage("spiral");
-        setShowSpiral(true);
+        setStage("wordSwap");
       }, 500);
-      return () => clearTimeout(timer);
-    }
-
-    // Handle spiral stage
-    if (stage === "spiral") {
-      const timer = setTimeout(() => {
-        setStage("hero");
-      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [stage]);
@@ -39,10 +29,8 @@ const Index = () => {
         <div className="fixed inset-0 bg-background animate-text-fade-in" />
       )}
       
-      {stage === "spiral" && showSpiral && (
-        <div className="fixed inset-0 bg-background flex items-center justify-center">
-          <SpiralAnimation className="w-96 h-96 text-foreground" />
-        </div>
+      {stage === "wordSwap" && (
+        <WordSwapAnimation onComplete={() => setStage("hero")} />
       )}
       
       {stage === "hero" && <HeroSection />}
