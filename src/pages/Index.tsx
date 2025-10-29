@@ -4,6 +4,7 @@ import LoadingText from "@/components/LoadingText";
 import WordSwapAnimation from "@/components/WordSwapAnimation";
 import HeroSection from "@/components/HeroSection";
 import ScrollVideoSection from "@/components/ScrollVideoSection";
+import ProjectsSection from "@/components/ProjectsSection";
 
 type AnimationStage = "wave" | "loading" | "transition" | "wordSwap" | "hero";
 
@@ -38,6 +39,7 @@ const Index = () => {
         <>
           <HeroSection />
           <ScrollVideoSection />
+          <ProjectsSection />
         </>
       )}
     </>
