@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import TechStackCircle from "./TechStackCircle";
 
 const ScrollVideoSection = () => {
   const [scales, setScales] = useState([0, 0, 0, 0]);
@@ -7,7 +8,7 @@ const ScrollVideoSection = () => {
   const [expandingCircleScale, setExpandingCircleScale] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const text = "The slowest band in history emerged in late 2003 between Benicàssim and Castellón, Spain, crafting an alternative rock sound shaped by classic rock influences.";
+  const text = "Great software starts with understanding — I turn client ideas into reliable, production-ready solutions with clean code and modern architecture.";
   const words = text.split(" ");
 
   useEffect(() => {
@@ -72,7 +73,7 @@ const ScrollVideoSection = () => {
           setTextOpacity(1);
       }
 
-      const expandingCircleStart = 0.65;
+      const expandingCircleStart = 0.9;
       if (scrollProgress > expandingCircleStart) {
           const expandingCircleProgress = (scrollProgress - expandingCircleStart) / (1.0 - expandingCircleStart);
           setExpandingCircleScale(expandingCircleProgress * 2.5);
@@ -113,11 +114,11 @@ const ScrollVideoSection = () => {
         
         {[...Array(4)].map((_, i) => {
           const scale = scales[i];
-          const videoSrc = [
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          const gifSrc = [
+            "https://i.gifer.com/9tqR.gif",
+            "https://i.gifer.com/Lf9n.gif",
+            "https://i.gifer.com/8anu.gif",
+            "https://i.gifer.com/1plM.gif"
           ][i];
           
           const sizes = ["100vw", "80vw", "60vw", "40vw"];
@@ -133,28 +134,29 @@ const ScrollVideoSection = () => {
                 zIndex: i,
               }}
             >
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
+              <img
+                src={gifSrc}
                 className="w-full h-full object-cover"
-              >
-                <source src={videoSrc} type="video/mp4" />
-              </video>
+                alt="animated-gif"
+              />
             </div>
           );
         })}
         {expandingCircleScale > 0 && (
-          <div
-            className="absolute rounded-full bg-white"
-            style={{
-              width: "100vw",
-              height: "100vw",
-              transform: `scale(${expandingCircleScale})`,
-              zIndex: 5, 
-            }}
-          />
+          <>
+            <div
+              className="absolute rounded-full flex items-center justify-center"
+              style={{
+                width: "100vw",
+                height: "100vw",
+                transform: `scale(${expandingCircleScale})`,
+                zIndex: 5, 
+                backgroundImage: 'radial-gradient(circle, hsl(0, 0%, 5%) 50%, hsl(0, 100%, 50%) 65%, hsl(270, 100%, 50%) 75%, hsl(0, 0%, 5%) 85%)'
+              }}
+            >
+                <TechStackCircle scale={expandingCircleScale} />
+              </div>
+          </>
         )}
       </div>
     </div>

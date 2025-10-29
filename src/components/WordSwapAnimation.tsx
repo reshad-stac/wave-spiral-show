@@ -4,12 +4,12 @@ interface WordSwapAnimationProps {
   onComplete: () => void;
 }
 
-const randomWords = ["DREAM", "CHAOS", "PULSE", "WAVES", "SHIFT", "FLOWS"];
+const randomWords = [ "CHAOS", "PULSE", "EAT","SLEEP", "CODE", "REPEAT"];
 
 const WordSwapAnimation = ({ onComplete }: WordSwapAnimationProps) => {
   const [displayWords, setDisplayWords] = useState<string[]>([]);
   const [isSwapping, setIsSwapping] = useState(false);
-  const targetWord = "RESHAD";
+  const targetWord = "";
 
   useEffect(() => {
     // Show random words popping up

@@ -17,7 +17,7 @@ const LoadingText = ({ onComplete }: LoadingTextProps) => {
     <div className="fixed inset-0 flex items-center justify-center bg-background">
       <div className="text-center animate-text-fade-in">
         <p className="text-2xl font-bold tracking-wider">
-          loading waves <span className="mx-2">•</span> syncing spiral
+          Software <span className="mx-2">•</span> Engineer
         </p>
       </div>
     </div>
