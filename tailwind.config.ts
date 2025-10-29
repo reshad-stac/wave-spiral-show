@@ -80,10 +80,87 @@ export default {
             height: "0",
           },
         },
+        "wave-expand": {
+          "0%": {
+            transform: "scale(0)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(2)",
+            opacity: "0",
+          },
+        },
+        "circle-pulse": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            opacity: "0.8",
+          },
+          "50%": {
+            transform: "scale(1.1)",
+            opacity: "1",
+          },
+        },
+        "text-fade-in": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "text-circle": {
+          "0%": {
+            transform: "rotate(0deg) translateX(100px) rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(100px) rotate(-360deg)",
+          },
+        },
+        "spiral-spin": {
+          "0%": {
+            transform: "rotate(0deg) scale(0.5)",
+            opacity: "0",
+          },
+          "50%": {
+            transform: "rotate(180deg) scale(1)",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "rotate(360deg) scale(1)",
+            opacity: "1",
+          },
+        },
+        "spiral-continuous": {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        "hero-reveal": {
+          "0%": {
+            opacity: "0",
+            transform: "scale(0.8)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "scale(1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "wave-expand": "wave-expand 2s ease-out forwards",
+        "circle-pulse": "circle-pulse 1.5s ease-in-out infinite",
+        "text-fade-in": "text-fade-in 0.8s ease-out forwards",
+        "text-circle": "text-circle 2s linear forwards",
+        "spiral-spin": "spiral-spin 2s ease-out forwards",
+        "spiral-continuous": "spiral-continuous 20s linear infinite",
+        "hero-reveal": "hero-reveal 1s ease-out forwards",
       },
     },
   },
