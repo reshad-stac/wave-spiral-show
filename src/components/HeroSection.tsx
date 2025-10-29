@@ -1,5 +1,4 @@
 import { useState } from "react";
-import SpiralAnimation from "./SpiralAnimation";
 import { Menu, X } from "lucide-react";
 
 const HeroSection = () => {
@@ -35,20 +34,20 @@ const HeroSection = () => {
         </div>
       )}
 
-      {/* Spiral Background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-20">
-        <SpiralAnimation continuous className="w-[800px] h-[800px] text-foreground" />
-      </div>
-
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
-        <div className="text-center animate-hero-reveal">
+        <div className="text-center">
           <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-extrabold leading-none tracking-tighter">
-            skizophonic
+            {"RESHAD".split("").map((letter, index) => (
+              <span
+                key={index}
+                className="inline-block animate-letter-pop"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {letter}
+              </span>
+            ))}
           </h1>
-          <div className="mt-8 flex items-center justify-center">
-            <span className="text-sm font-medium tracking-wider uppercase">Skizophonic</span>
-          </div>
         </div>
 
         {/* Scroll Indicator */}
