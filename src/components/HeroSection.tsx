@@ -8,7 +8,7 @@ const HeroSection = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      const progress = Math.min(scrolled / 800, 1); // Zoom out over 800px of scroll
+      const progress = Math.min(scrolled / 600, 1); // Zoom out over 600px of scroll
       setScrollProgress(progress);
     };
 
@@ -16,15 +16,16 @@ const HeroSection = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const textScale = 1 - scrollProgress * 0.5;
+  const textScale = 1 - scrollProgress * 0.7;
   const opacity = 1 - scrollProgress;
   const bgDarkness = scrollProgress;
 
   return (
     <div 
-      className="fixed inset-0 overflow-hidden transition-colors duration-500"
+      className="relative overflow-hidden transition-colors duration-500"
       style={{
         backgroundColor: `hsl(0 0% ${100 - bgDarkness * 100}%)`,
+        minHeight: "100vh",
       }}
     >
       {/* Navigation */}
@@ -56,7 +57,7 @@ const HeroSection = () => {
       )}
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-center" style={{ minHeight: "100vh" }}>
         <div 
           className="text-center transition-all duration-300"
           style={{

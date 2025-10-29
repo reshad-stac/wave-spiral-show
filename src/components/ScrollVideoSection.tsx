@@ -10,16 +10,21 @@ const ScrollVideoSection = () => {
       if (!sectionRef.current) return;
       
       const rect = sectionRef.current.getBoundingClientRect();
-      const scrollProgress = Math.max(0, -rect.top) / (window.innerHeight * 2);
+      const viewportHeight = window.innerHeight;
       
-      // First circle grows from 0.1 to 1
-      const firstCircle = Math.min(0.1 + scrollProgress * 2, 1);
+      // Calculate scroll progress within this section
+      const scrollProgress = Math.max(0, -rect.top) / (viewportHeight * 2);
+      
+      // First circle grows from 0 to 1 more gradually
+      const firstCircle = Math.min(scrollProgress * 1.5, 1);
       setCircleScale(firstCircle);
       
-      // Second circle starts growing when first reaches full screen
-      if (firstCircle >= 1) {
-        const secondProgress = (scrollProgress - 0.45) * 2;
-        setSecondCircleScale(Math.max(0, Math.min(secondProgress * 0.5, 1)));
+      // Second circle starts growing when first reaches about 80% full screen
+      if (firstCircle >= 0.8) {
+        const secondProgress = (scrollProgress - 0.53) * 1.8;
+        setSecondCircleScale(Math.max(0, Math.min(secondProgress, 1)));
+      } else {
+        setSecondCircleScale(0);
       }
     };
 
@@ -31,31 +36,36 @@ const ScrollVideoSection = () => {
   return (
     <div 
       ref={sectionRef}
-      className="relative bg-background"
-      style={{ height: "300vh" }}
+      className="relative"
+      style={{ 
+        height: "300vh",
+        backgroundColor: "hsl(0 0% 0%)"
+      }}
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: "hsl(0 0% 0%)" }}>
         {/* First Circle with Video */}
-        <div
-          className="absolute rounded-full overflow-hidden transition-transform duration-300"
-          style={{
-            width: "100vw",
-            height: "100vw",
-            maxWidth: "100vw",
-            maxHeight: "100vh",
-            transform: `scale(${circleScale})`,
-          }}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
+        {circleScale > 0 && (
+          <div
+            className="absolute rounded-full overflow-hidden transition-transform duration-300"
+            style={{
+              width: "100vw",
+              height: "100vw",
+              maxWidth: "100vw",
+              maxHeight: "100vh",
+              transform: `scale(${circleScale})`,
+            }}
           >
-            <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-          </video>
-        </div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+            </video>
+          </div>
+        )}
 
         {/* Second Circle with Video */}
         {secondCircleScale > 0 && (
